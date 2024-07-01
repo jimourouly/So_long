@@ -3,7 +3,7 @@
 #                                                         :::      ::::::::    #
 #    Makefile                                           :+:      :+:    :+:    #
 #                                                     +:+ +:+         +:+      #
-#    By: jroulet <jroulet@student.42.fr>            +#+  +:+       +#+         #
+#    By: jroulet <jroulet@student.42.fr>           +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2024/06/26 18:14:56 by jroulet           #+#    #+#              #
 #    Updated: 2024/07/01 12:37:06 by jroulet          ###   ########.fr        #
@@ -21,51 +21,46 @@ LIBNAME = libft.a
 
 NAME = so_long
 
-##MINILIBX
-OS=$(shell uname)
+## MINILIBX
+OS = $(shell uname)
 ifeq ($(OS), Linux)
-INCLUDE = -I./mlx
+MLXFLAGS = -Lmlx_linux -lmlx -L/usr/X11/lib -lXext -lX11
+INCLUDE = -I/usr/include -Imlx_linux
 else
-INCLUDE = -I./path/to/mac/include # Adjust this path as necessary
+MLXFLAGS = -L/path/to/mac/lib -lmlx -framework OpenGL -framework AppKit
+INCLUDE = -I/path/to/mac/include
 endif
-
-MLXDIR = ./mlx
-MLXLIB = $(MLXDIR)/libmlx_$(OS).a # Corrected typo here
-####MINILIBX END
-
-%.o: %.c
-	$(CC) $(FLAGS) $(DEBUGGER) $(INCLUDE) -c $< -o $@ # Ensure INCLUDE is used here
+#### MINILIBX END
 
 all: $(NAME)
 
 $(NAME): makelibft $(OBJS)
-	$(CC) $(OBJS) $(LIBDIR)/$(LIBNAME) -o $(NAME)
+	$(CC) $(FLAGS) $(OBJS) $(LIBDIR)/$(LIBNAME) $(MLXFLAGS) -o $(NAME) -lm
 
 makelibft:
 	make -C $(LIBDIR)
 	cp $(LIBDIR)/$(LIBNAME) .
 
 debug: $(NAME)
-	$(CC) $(DEBUGGER) $(OBJS) $(LIBDIR)/$(LIBNAME) -o $(NAME)
-
-# Other targets remain unchanged
-
-git: fclean
-	git add .
-	git commit -m "$t" -m "$b"
-	git push
+	$(CC) $(DEBUGGER) $(FLAGS) $(OBJS) $(LIBDIR)/$(LIBNAME) $(MLXFLAGS) -o $(NAME)
 
 clean:
 	make -C $(LIBDIR) clean
 	rm -f $(OBJS)
-	rm -f ./sort/*.o
 
 fclean: clean
 	make -C $(LIBDIR) fclean
 	rm -f $(LIBNAME)
 	rm -f $(NAME)
-	rm -f ./sort/*.o
 
 re: fclean all
 
-.PHONY: debugger compile clean re fclean bonus git all
+git:
+	git add .
+	git commit -m "$t" -m "$b"
+	git push
+
+%.o: %.c
+	$(CC) $(FLAGS) $(INCLUDE) -c $< -o $@
+
+.PHONY: all clean fclean re debug git
