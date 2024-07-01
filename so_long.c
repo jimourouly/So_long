@@ -6,7 +6,7 @@
 /*   By: jim <jim@student.42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/06/26 18:14:16 by jroulet           #+#    #+#             */
-/*   Updated: 2024/07/01 15:24:33 by jim              ###   ########.fr       */
+/*   Updated: 2024/07/01 16:06:01 by jim              ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,6 +20,12 @@ void	ft_put_pixel(t_img *img, int x, int y, int color)
 	dst = img->addr + (y * img->line_length + x * (img->bits_per_pixel / 8));
 	*(unsigned int*)dst = color;
 }
+
+// 1. get the map woth get next line
+// 2. parse the map
+// 3. control if the map is ok
+// 3. draw the map
+// 4. control the player
 
 int	main(int ac, char **av)
 {
