@@ -13,7 +13,10 @@
 FLAGS = -Wall -Werror -Wextra
 CC = cc
 DEBUGGER = -g
-SRCS = ./so_long.c
+SRCS = ./so_long.c\
+		./draw_shape.c \
+		./GNL/get_next_line.c \
+		./GNL/get_next_line_utils.c 
 OBJS = $(SRCS:.c=.o)
 
 LIBDIR = ./libft

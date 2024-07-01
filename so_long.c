@@ -3,24 +3,15 @@
 /*                                                        :::      ::::::::   */
 /*   so_long.c                                          :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: jroulet <jroulet@student.42.fr>            +#+  +:+       +#+        */
+/*   By: jim <jim@student.42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/06/26 18:14:16 by jroulet           #+#    #+#             */
-/*   Updated: 2024/07/01 12:39:14 by jroulet          ###   ########.fr       */
+/*   Updated: 2024/07/01 15:24:33 by jim              ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "so_long.h"
 #include <math.h>
-
-typedef struct s_img
-{
-	void	*img;
-	char	*addr;
-	int		bits_per_pixel;
-	int		line_length;
-	int		endian;
-}				t_img;
 
 void	ft_put_pixel(t_img *img, int x, int y, int color)
 {
@@ -30,66 +21,27 @@ void	ft_put_pixel(t_img *img, int x, int y, int color)
 	*(unsigned int*)dst = color;
 }
 
-void	draw_circle (t_img *img, int x, int y, int size, int color)
-{
-	int	i;
-	int	j;
-
-	i = 0;
-	while (i < size)
-	{
-		j = 0;
-		while (j < size)
-		{
-			if (sqrt((i - size / 2) * (i - size / 2) + (j - size / 2) * (j - size / 2)) < size / 2)
-				ft_put_pixel(img, x + i, y + j, color);
-			j++;
-		}
-		i++;
-	}
-}
-
-void	draw_trinangle (t_img *img, int x, int y, int size, int color)
-{
-	int	i;
-	int	j;
-
-	i = 0;
-	while (i < size)
-	{
-		j = 0;
-		while (j < size - i)
-		{
-			ft_put_pixel(img, x + i, y + j, color);
-			j++;
-		}
-		i++;
-	}
-}
-void	draw_square (t_img *img, int x, int y, int size, int color)
-{
-	int	i;
-	int	j;
-
-	i = 0;
-	while (i < size)
-	{
-		j = 0;
-		while (j < size)
-		{
-			ft_put_pixel(img, x + i, y + j, color);
-			j++;
-		}
-		i++;
-	}
-}
-
-int	main(void)
+int	main(int ac, char **av)
 {
 	void	*mlx;
 	void	*mlx_win;
 	t_img	img;
-
+	int		fd;
+	
+	if (ac != 2)
+	{
+		ft_putstr_fd("Error please select a map\n", 2);
+		return (1);
+	}
+	else
+	{
+		fd = open(av[1], O_RDONLY);
+		if (fd < 0)
+		{
+			ft_putstr_fd("Error opening file\n", 2);
+			return (1);
+		}
+	}
 	mlx = mlx_init();
 	mlx_win = mlx_new_window(mlx, 1920, 1080, "HELLO");
 	img.img = mlx_new_image(mlx, 1920, 1080);
@@ -97,7 +49,7 @@ int	main(void)
 				&img.endian);
 	ft_put_pixel(&img, 50, 50, 0xFFFF0000);
 	draw_square(&img, 100, 100, 50, 0x00FF0000);
-	draw_trinangle(&img, 200, 200, 50, 0x0000FF00);
+	draw_triangle(&img, 200, 200, 50, 0x0000FF00);
 	draw_circle(&img, 300, 300, 50, 0x000000FF);
 	mlx_put_image_to_window(mlx, mlx_win, img.img, 0,0);
 	mlx_loop(mlx);
