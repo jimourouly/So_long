@@ -6,7 +6,7 @@
 /*   By: jroulet <jroulet@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/06/26 18:14:26 by jroulet           #+#    #+#             */
-/*   Updated: 2024/06/26 18:35:42 by jroulet          ###   ########.fr       */
+/*   Updated: 2024/07/01 12:33:22 by jroulet          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,6 +14,6 @@
 # define SO_LONG_H
 
 # include "libft/libft.h"
-
+# include "mlx_linux/mlx.h"
 
 #endif

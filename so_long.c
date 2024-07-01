@@ -6,20 +6,21 @@
 /*   By: jroulet <jroulet@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/06/26 18:14:16 by jroulet           #+#    #+#             */
-/*   Updated: 2024/06/26 18:26:42 by jroulet          ###   ########.fr       */
+/*   Updated: 2024/07/01 12:39:14 by jroulet          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "so_long.h"
 
-int	main(int ac, char **av)
-{
-	int	i;
 
-	i = 0;
-	while (i < ac)
-	{
-		ft_printf("av%d = %s\n", ac, av[i]);
-		i++;
-	}
+//https://harm-smits.github.io/42docs/libs/minilibx/getting_started.html
+int	main(void)
+{
+	void	*mlx;
+	void	*mlx_win;
+
+	mlx = mlx_init();
+	mlx_win = mlx_new_window(mlx, 1920, 1080, "Hello world!");
+	mlx_loop(mlx);
+
 }

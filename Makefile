@@ -6,14 +6,14 @@
 #    By: jroulet <jroulet@student.42.fr>            +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2024/06/26 18:14:56 by jroulet           #+#    #+#              #
-#    Updated: 2024/06/26 18:48:53 by jroulet          ###   ########.fr        #
+#    Updated: 2024/07/01 12:37:06 by jroulet          ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
 FLAGS = -Wall -Werror -Wextra
 CC = cc
 DEBUGGER = -g
-SRCS =	./so_long.c
+SRCS = ./so_long.c
 OBJS = $(SRCS:.c=.o)
 
 LIBDIR = ./libft
@@ -21,23 +21,20 @@ LIBNAME = libft.a
 
 NAME = so_long
 
-
 ##MINILIBX
 OS=$(shell uname)
 ifeq ($(OS), Linux)
-defrule:
-	INCLUDE = /mlx/
+INCLUDE = -I./mlx
 else
-defrule :
-	echo i am mac
+INCLUDE = -I./path/to/mac/include # Adjust this path as necessary
 endif
 
 MLXDIR = ./mlx
-MLXLIB = $(MLX_DIR)/libmlx_$(UNAME).a
+MLXLIB = $(MLXDIR)/libmlx_$(OS).a # Corrected typo here
 ####MINILIBX END
 
 %.o: %.c
-	$(CC) $(FLAGS) -g -c $< -o $@
+	$(CC) $(FLAGS) $(DEBUGGER) $(INCLUDE) -c $< -o $@ # Ensure INCLUDE is used here
 
 all: $(NAME)
 
@@ -50,6 +47,8 @@ makelibft:
 
 debug: $(NAME)
 	$(CC) $(DEBUGGER) $(OBJS) $(LIBDIR)/$(LIBNAME) -o $(NAME)
+
+# Other targets remain unchanged
 
 git: fclean
 	git add .
