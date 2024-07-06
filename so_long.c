@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   so_long.c                                          :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: jim <jim@student.42.fr>                    +#+  +:+       +#+        */
+/*   By: jroulet <jroulet@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/06/26 18:14:16 by jroulet           #+#    #+#             */
-/*   Updated: 2024/07/05 20:01:37 by jim              ###   ########.fr       */
+/*   Updated: 2024/07/06 13:40:14 by jroulet          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -26,40 +26,92 @@ void	ft_put_pixel(t_img *img, int x, int y, int color)
 // 3. control if the map is ok
 // 3. draw the map
 // 4. control the player
-int	returnmap (char *path)
+/*int	returnmap (char *path)
 {
-	int	fd;
+	int		fd;
 	char	*line;
 	int		i;
-	int		y;
+	int		column;
 
-	y = 0;
 	i = 0;
-	
+
 	fd = open(path, O_RDONLY);
 	if (fd < 0)
 	{
-		ft_putstr_fd("Error opening file\n", 2);
-		return (1);
+		ft_putstr_fd("Error opening map\n", 2);
+		return (0);
 	}
 	else
 	{
-		while (i < 1 )
+		while (1)
 		{
 			line = get_next_line(fd);
-			ft_printf("%s", line);
-			y = ft_strlen(line);
+
 			if (line == NULL)
 				break;
+			else
+			{
+				column = ft_column_count(&line);
+				ft_printf("line %d nbr column %d\n",i, column );
+			}
 			free(line);
 			i++;
 		}
+		//map->lines = i;
 		ft_printf("\n");
 		ft_printf("nbr line = %d \n", i);
-		ft_printf("nbr column %d\n", y);
+		//ft_printf("nbr lines = %d \n", map->lines);
 	}
-	return (i);
+	return (fd);
+}*/
+
+int	checkextension(char *path)
+{
+	int i;
+	int	ok;
+
+
+	i = 0;
+	ok = 1;
+
+	while(path[i])
+	{
+		if (ft_isalnum(path[i]) || path[i] == 47)
+			i++;
+		if (path[i] == '.')
+		{
+			i++;
+			while (path[i])
+			{
+				if (path[i] == 'b')
+				{
+					ok = 1;
+					i++;
+				}
+				else
+					return (0);
+				if (path[i] == 'e')
+				{
+					ok = 1;
+					i ++;
+				}
+				else
+					return (0);
+				if (path[i] == 'r')
+				{
+					ok = 1;
+					i++;
+				}
+				else
+					return (0);
+			}
+		}
+		else
+			ok = 0;
+	}
+	return (ok);
 }
+
 int	main(int ac, char **av)
 {
 	//void	*mlx;
@@ -67,15 +119,22 @@ int	main(int ac, char **av)
 	//t_img	img;
 	int	fd;
 
-	fd = 0;
-	if (ac != 2)
+	fd = open(av[1], O_RDONLY);
+	if (ac != 2 || !(checkextension(av[1])) || fd < 0)
 	{
-		ft_putstr_fd("Error please select a map\n", 2);
+		if (ac != 2)
+			ft_printf("please enter 'sol_long path/filemap.ber\n");
+		else if (!(checkextension(av[1])))
+			ft_printf("Wrong filename, path or extension\n");
+		else if (fd < 0)
+			ft_printf("can't open filemap\n");
 		return (1);
 	}
 	else
 	{
-		fd = returnmap (av[1]);
+		ft_printf("ok\n");
+		checkmap(av[1]);
+
 	}
 	/*
 	mlx = mlx_init();

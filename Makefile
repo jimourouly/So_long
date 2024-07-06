@@ -16,7 +16,8 @@ DEBUGGER = -g
 SRCS = ./so_long.c\
 		./draw_shape.c \
 		./GNL/get_next_line.c \
-		./GNL/get_next_line_utils.c 
+		./GNL/get_next_line_utils.c\
+		./maptreatment.c
 OBJS = $(SRCS:.c=.o)
 
 LIBDIR = ./libft
