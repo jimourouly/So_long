@@ -6,7 +6,7 @@
 /*   By: jroulet <jroulet@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/06/26 18:14:16 by jroulet           #+#    #+#             */
-/*   Updated: 2024/07/06 13:40:14 by jroulet          ###   ########.fr       */
+/*   Updated: 2024/07/06 14:06:31 by jroulet          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -132,9 +132,10 @@ int	main(int ac, char **av)
 	}
 	else
 	{
-		ft_printf("ok\n");
-		checkmap(av[1]);
-
+		if (checkmapdim(av[1]))
+			ft_printf("dimension ok\n");
+		else
+			ft_printf("dimension nok\n");
 	}
 	/*
 	mlx = mlx_init();

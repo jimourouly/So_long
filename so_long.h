@@ -6,7 +6,7 @@
 /*   By: jroulet <jroulet@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/06/26 18:14:26 by jroulet           #+#    #+#             */
-/*   Updated: 2024/07/06 13:41:05 by jroulet          ###   ########.fr       */
+/*   Updated: 2024/07/06 14:19:21 by jroulet          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -41,7 +41,8 @@ void	draw_circle (t_img *img, int x, int y, int size, int color);
 void	draw_triangle (t_img *img, int x, int y, int size, int color);
 void	draw_square (t_img *img, int x, int y, int size, int color);
 
-int		ft_column_count(char *line);
-int		checkmap(char *mappath);
+int		ft_columns_count(char *line);
+int		checkmapdim(char *mappath);
+int		ft_lines_count (char *mappath);
 
 #endif
