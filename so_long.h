@@ -6,7 +6,7 @@
 /*   By: jroulet <jroulet@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/06/26 18:14:26 by jroulet           #+#    #+#             */
-/*   Updated: 2024/07/06 14:19:21 by jroulet          ###   ########.fr       */
+/*   Updated: 2024/07/07 14:46:23 by jroulet          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -44,5 +44,7 @@ void	draw_square (t_img *img, int x, int y, int size, int color);
 int		ft_columns_count(char *line);
 int		checkmapdim(char *mappath);
 int		ft_lines_count (char *mappath);
+int		**arraymaker (char *mappath, int nbrlines);
+void	printarray (int **array, int nbrlines);
 
 #endif

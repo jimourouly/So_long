@@ -6,7 +6,7 @@
 /*   By: jroulet <jroulet@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/06/26 18:14:16 by jroulet           #+#    #+#             */
-/*   Updated: 2024/07/06 14:06:31 by jroulet          ###   ########.fr       */
+/*   Updated: 2024/07/07 15:48:07 by jroulet          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -65,6 +65,7 @@ void	ft_put_pixel(t_img *img, int x, int y, int color)
 	return (fd);
 }*/
 
+
 int	checkextension(char *path)
 {
 	int i;
@@ -118,8 +119,11 @@ int	main(int ac, char **av)
 	//void	*mlx_win;
 	//t_img	img;
 	int	fd;
+	int	**array;
+	int	nbrlines;
 
 	fd = open(av[1], O_RDONLY);
+	nbrlines = ft_lines_count(av[1]);
 	if (ac != 2 || !(checkextension(av[1])) || fd < 0)
 	{
 		if (ac != 2)
@@ -133,9 +137,15 @@ int	main(int ac, char **av)
 	else
 	{
 		if (checkmapdim(av[1]))
+		{
 			ft_printf("dimension ok\n");
+			array = arraymaker(av[1], ft_lines_count(av[1]));
+			printarray(array, nbrlines);
+		}
 		else
+		{
 			ft_printf("dimension nok\n");
+		}
 	}
 	/*
 	mlx = mlx_init();
@@ -150,5 +160,6 @@ int	main(int ac, char **av)
 	mlx_put_image_to_window(mlx, mlx_win, img.img, 0,0);
 	mlx_loop(mlx);
 */
+
 	return (0);
 }

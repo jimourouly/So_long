@@ -1,12 +1,12 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   maptreatment.c                                     :+:      :+:    :+:   */
+/*   mapchecker.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: jroulet <jroulet@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/07/06 10:28:37 by jroulet           #+#    #+#             */
-/*   Updated: 2024/07/06 14:42:55 by jroulet          ###   ########.fr       */
+/*   Updated: 2024/07/07 15:47:07 by jroulet          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,7 +18,6 @@ int	ft_columns_count(char *line)
 
 	count = ft_strlen(line);
 	return (count);
-
 }
 
 int	ft_lines_count (char *mappath)
@@ -38,14 +37,86 @@ int	ft_lines_count (char *mappath)
 			i++;
 		free(line);
 	}
-	ft_printf("i = %d\n", i);
 	return (i);
 }
 
+void	printarray (int **array, int nbrlines)
+{
+	int	i;
+	int	j;
 
-// check number of line
-// check number of column
-// check if column and line are equal
+	ft_printf("array\n");
+	i = 0;
+	while (i < nbrlines)
+	{
+		j = 0;
+		while (j < nbrlines)
+		{
+			ft_printf("%d", array[i][j]);
+			j ++;
+		}
+		ft_printf("\n");
+		i++;
+	}
+	ft_printf("END array\n");
+}
+
+int	checkmapcontent(char c)
+{
+	int ok;
+
+	ok = 0;
+	if (c == 48 || c == 49 || c == 99 || c == 101 || c == 112)
+		ok = 1;
+	return (ok);
+}
+
+
+
+int	**arraymaker (char *mappath, int nbrlines)
+{
+	int		fd;
+	char	*line;
+	int		lines;
+	int		i;
+	int		j;
+	int		**array;
+
+	i = 0;
+	array = (int **)malloc(nbrlines * sizeof(int *));
+	if (array == NULL)
+	{
+		ft_printf("Error allocating memory\n");
+		return (0);
+	}
+	fd = open(mappath, O_RDONLY);
+	lines = ft_lines_count(mappath);
+	while (i < (lines))
+	{
+		j = 0;
+		line = get_next_line(fd);
+		array[i] = (int *)malloc(nbrlines * sizeof(int));
+		while (j < nbrlines)
+		{
+			if (line == NULL)
+				break;
+			if (checkmapcontent(line[j]))
+			{
+				array[i][j] = 
+				ft_printf("content ok\n");
+			}
+			else
+				ft_printf("content nok\n");
+			j++;
+		}
+		i++;
+		free (line);
+	}
+	printarray(array, nbrlines);
+	return (array);
+}
+
+
 int	checkmapdim(char *mappath)
 {
 	char	*line;
@@ -56,7 +127,6 @@ int	checkmapdim(char *mappath)
 
 	i = 1;
 	lines = (ft_lines_count(mappath));
-	ft_printf("lines = %d\n", lines);
 	fd = open(mappath, O_RDONLY);
 	while (i <= lines)
 	{
@@ -67,5 +137,5 @@ int	checkmapdim(char *mappath)
 		i++;
 		free(line);
 	}
-	return (1);
+	return (columns);
 }
