@@ -6,7 +6,7 @@
 /*   By: jroulet <jroulet@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/07/06 10:28:37 by jroulet           #+#    #+#             */
-/*   Updated: 2024/07/07 15:47:07 by jroulet          ###   ########.fr       */
+/*   Updated: 2024/07/07 16:28:36 by jroulet          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -102,11 +102,11 @@ int	**arraymaker (char *mappath, int nbrlines)
 				break;
 			if (checkmapcontent(line[j]))
 			{
-				array[i][j] = 
+				//add conversion char int
 				ft_printf("content ok\n");
 			}
 			else
-				ft_printf("content nok\n");
+				return (0);
 			j++;
 		}
 		i++;

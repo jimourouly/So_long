@@ -6,7 +6,7 @@
 /*   By: jroulet <jroulet@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/06/26 18:14:16 by jroulet           #+#    #+#             */
-/*   Updated: 2024/07/07 15:48:07 by jroulet          ###   ########.fr       */
+/*   Updated: 2024/07/07 16:27:52 by jroulet          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -65,7 +65,7 @@ void	ft_put_pixel(t_img *img, int x, int y, int color)
 	return (fd);
 }*/
 
-
+// add last path ==null
 int	checkextension(char *path)
 {
 	int i;
@@ -79,33 +79,11 @@ int	checkextension(char *path)
 	{
 		if (ft_isalnum(path[i]) || path[i] == 47)
 			i++;
-		if (path[i] == '.')
+		if (path[i] == '.' && path[i+1] == 'b' && path[i+2] == 'e'&& path[i+3] == 'r')
 		{
-			i++;
-			while (path[i])
-			{
-				if (path[i] == 'b')
-				{
-					ok = 1;
-					i++;
-				}
-				else
-					return (0);
-				if (path[i] == 'e')
-				{
-					ok = 1;
-					i ++;
-				}
-				else
-					return (0);
-				if (path[i] == 'r')
-				{
-					ok = 1;
-					i++;
-				}
-				else
-					return (0);
-			}
+			ft_printf("OK\n");
+			ok = 1;
+			break;
 		}
 		else
 			ok = 0;
@@ -140,6 +118,8 @@ int	main(int ac, char **av)
 		{
 			ft_printf("dimension ok\n");
 			array = arraymaker(av[1], ft_lines_count(av[1]));
+			if (array == 0)
+				return (0); // if content is not 1 0 c e p return 0
 			printarray(array, nbrlines);
 		}
 		else
