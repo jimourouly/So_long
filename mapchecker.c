@@ -6,7 +6,7 @@
 /*   By: jroulet <jroulet@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/07/06 10:28:37 by jroulet           #+#    #+#             */
-/*   Updated: 2024/07/08 15:16:46 by jroulet          ###   ########.fr       */
+/*   Updated: 2024/07/08 16:00:24 by jroulet          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -62,6 +62,61 @@ void	printarray (int **array, int nbrlines)
 	ft_printf("END array\n");
 }
 
+void	mintomaj(int **array, int nbrlines)
+{
+	int i;
+	int	y;
+
+	i = 0;
+	while (i < nbrlines)
+	{
+		y = 0;
+		while (y < nbrlines)
+		{
+			if (array[i][y] == 'c')
+				array[i][y] = (array[i][y] - 32);
+			if (array[i][y] == 'e')
+				array[i][y] = (array[i][y] - 32);
+			if (array[i][y] == 'p')
+				array[i][y] = (array[i][y] - 32);
+			y++;
+		}
+		i ++;
+	}
+}
+
+int	checkpce(int **array, int nbrlines)
+{
+	ft_printf("checkPCE\n");
+	int i;
+	int	y;
+	int	countPCE[3];
+
+	countPCE[0] = 0;
+	countPCE[1] = 0;
+	countPCE[2] = 0;
+
+	i = 0;
+	while (i < nbrlines)
+	{
+		y = 0;
+		while (y < nbrlines)
+		{
+			if (array[i][y] == 'c' || array[i][y] == 'C')
+				countPCE[0]++;
+			if (array[i][y] == 'e' || array[i][y] == 'E')
+				countPCE[1]++;
+			if (array[i][y] == 'p'|| array[i][y] == 'E')
+				countPCE[2]++;
+			y++;
+		}
+		i ++;
+	}
+	if (countPCE[0] != 1 || countPCE[1] != 1 || countPCE[2] != 1 )
+		return(0);
+	return (1);
+
+}
 
 // check max 1 p and 1 e
 // check doable
@@ -129,8 +184,6 @@ int	**arraymaker (char *mappath, int nbrlines)
 			if (checkmapcontent(line[j]))
 			{
 				array[i][j] = (int)(line[j]);
-				//add conversion char int
-				//ft_printf("content ok\n");
 			}
 			else
 				return (0);
@@ -144,9 +197,14 @@ int	**arraymaker (char *mappath, int nbrlines)
 		ft_printf("map must be between wall\n");
 	else
 		ft_printf("wall ok\n");
-	//printarray(array, nbrlines);
+	if (!(checkpce(array, nbrlines)))
+		ft_printf("CPE NOK\n");
+	else
+		ft_printf("CPE OK\n");
+	mintomaj(array, nbrlines);
 	return (array);
 }
+
 
 
 int	checkmapdim(char *mappath)
