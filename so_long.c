@@ -6,7 +6,7 @@
 /*   By: jroulet <jroulet@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/06/26 18:14:16 by jroulet           #+#    #+#             */
-/*   Updated: 2024/07/08 15:15:21 by jroulet          ###   ########.fr       */
+/*   Updated: 2024/07/08 17:21:03 by jroulet          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -99,7 +99,13 @@ int	main(int ac, char **av)
 	int	fd;
 	int	**array;
 	int	nbrlines;
+	t_map	*player;
+	t_map	*c;
+	t_map	*e;
 
+	player = malloc(sizeof(t_map));
+	c = malloc(sizeof(t_map));
+	e = malloc(sizeof(t_map));
 	fd = open(av[1], O_RDONLY);
 	nbrlines = ft_lines_count(av[1]);
 	if (ac != 2 || !(checkextension(av[1])) || fd < 0)
@@ -124,6 +130,9 @@ int	main(int ac, char **av)
 				return (0);
 			}
 			printarray(array, nbrlines);
+			returnpos(array, nbrlines, player, 80);
+			returnpos(array, nbrlines,e, 69);
+			returnpos(array, nbrlines,c, 67);
 		}
 		else
 		{

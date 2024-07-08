@@ -17,7 +17,8 @@ SRCS = ./so_long.c\
 		./draw_shape.c \
 		./GNL/get_next_line.c \
 		./GNL/get_next_line_utils.c\
-		./mapchecker.c
+		./mapchecker.c\
+		./flood.c
 OBJS = $(SRCS:.c=.o)
 
 LIBDIR = ./libft

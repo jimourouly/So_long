@@ -6,7 +6,7 @@
 /*   By: jroulet <jroulet@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/06/26 18:14:26 by jroulet           #+#    #+#             */
-/*   Updated: 2024/07/07 14:46:23 by jroulet          ###   ########.fr       */
+/*   Updated: 2024/07/08 17:20:51 by jroulet          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -30,8 +30,10 @@ typedef struct s_img
 
 typedef struct s_map
 {
-	int		columns;
-	int		lines;
+	int		type;
+	int		x;
+	int		y;
+	int		visited;
 
 }				t_map;
 
@@ -46,5 +48,6 @@ int		checkmapdim(char *mappath);
 int		ft_lines_count (char *mappath);
 int		**arraymaker (char *mappath, int nbrlines);
 void	printarray (int **array, int nbrlines);
+void	returnpos(int **array, int nbrlines, t_map *pos, int item);
 
 #endif
