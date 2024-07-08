@@ -6,7 +6,7 @@
 /*   By: jroulet <jroulet@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/07/06 10:28:37 by jroulet           #+#    #+#             */
-/*   Updated: 2024/07/07 16:28:36 by jroulet          ###   ########.fr       */
+/*   Updated: 2024/07/08 15:16:46 by jroulet          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -40,19 +40,20 @@ int	ft_lines_count (char *mappath)
 	return (i);
 }
 
+
 void	printarray (int **array, int nbrlines)
 {
 	int	i;
 	int	j;
 
-	ft_printf("array\n");
+	ft_printf("\n\n\narray\n");
 	i = 0;
 	while (i < nbrlines)
 	{
 		j = 0;
 		while (j < nbrlines)
 		{
-			ft_printf("%d", array[i][j]);
+			ft_printf("%d ", array[i][j]);
 			j ++;
 		}
 		ft_printf("\n");
@@ -61,16 +62,41 @@ void	printarray (int **array, int nbrlines)
 	ft_printf("END array\n");
 }
 
+
+// check max 1 p and 1 e
+// check doable
+
+int	checkwall(int **array, int nbrlines)
+{
+	int	i;
+
+	i = 1;
+	while (i < nbrlines)
+	{
+		if (array[0][i] != 49)
+			return (0);
+		if (array[i][0] != 49)
+			return (0);
+		if (array[nbrlines - 1][nbrlines - i] != 49)
+			return (0);
+		if (array[nbrlines - i ][nbrlines - 1] != 49)
+			return (0);
+		i ++;
+	}
+	return (1);
+}
+
 int	checkmapcontent(char c)
 {
 	int ok;
 
 	ok = 0;
-	if (c == 48 || c == 49 || c == 99 || c == 101 || c == 112)
+	if (c == 99 || c == 101 || c == 112)
+		c = (c - 32);
+	if (c == 48 || c == 49 || c == 67 || c == 69 || c == 80)
 		ok = 1;
 	return (ok);
 }
-
 
 
 int	**arraymaker (char *mappath, int nbrlines)
@@ -102,8 +128,9 @@ int	**arraymaker (char *mappath, int nbrlines)
 				break;
 			if (checkmapcontent(line[j]))
 			{
+				array[i][j] = (int)(line[j]);
 				//add conversion char int
-				ft_printf("content ok\n");
+				//ft_printf("content ok\n");
 			}
 			else
 				return (0);
@@ -111,8 +138,13 @@ int	**arraymaker (char *mappath, int nbrlines)
 		}
 		i++;
 		free (line);
+
 	}
-	printarray(array, nbrlines);
+	if (!(checkwall(array, lines)))
+		ft_printf("map must be between wall\n");
+	else
+		ft_printf("wall ok\n");
+	//printarray(array, nbrlines);
 	return (array);
 }
 
@@ -122,17 +154,17 @@ int	checkmapdim(char *mappath)
 	char	*line;
 	int		fd;
 	int		columns;
-	int		lines;
+	int		nbrlines;
 	int		i;
 
 	i = 1;
-	lines = (ft_lines_count(mappath));
+	nbrlines = (ft_lines_count(mappath));
 	fd = open(mappath, O_RDONLY);
-	while (i <= lines)
+	while (i <= nbrlines)
 	{
 		line = get_next_line(fd);
 		columns = ft_columns_count(line);
-		if (columns != lines)
+		if (columns != nbrlines)
 			return (0);
 		i++;
 		free(line);

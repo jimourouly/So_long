@@ -6,7 +6,7 @@
 /*   By: jroulet <jroulet@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/06/26 18:14:16 by jroulet           #+#    #+#             */
-/*   Updated: 2024/07/07 16:27:52 by jroulet          ###   ########.fr       */
+/*   Updated: 2024/07/08 15:15:21 by jroulet          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -77,7 +77,7 @@ int	checkextension(char *path)
 
 	while(path[i])
 	{
-		if (ft_isalnum(path[i]) || path[i] == 47)
+		if (ft_isalnum(path[i]) || path[i] == 47 || path[i] == 92)
 			i++;
 		if (path[i] == '.' && path[i+1] == 'b' && path[i+2] == 'e'&& path[i+3] == 'r')
 		{
@@ -105,7 +105,7 @@ int	main(int ac, char **av)
 	if (ac != 2 || !(checkextension(av[1])) || fd < 0)
 	{
 		if (ac != 2)
-			ft_printf("please enter 'sol_long path/filemap.ber\n");
+			ft_printf("please enter './so_long folder/file.ber\n");
 		else if (!(checkextension(av[1])))
 			ft_printf("Wrong filename, path or extension\n");
 		else if (fd < 0)
@@ -119,7 +119,10 @@ int	main(int ac, char **av)
 			ft_printf("dimension ok\n");
 			array = arraymaker(av[1], ft_lines_count(av[1]));
 			if (array == 0)
-				return (0); // if content is not 1 0 c e p return 0
+			{
+				ft_printf("array must only have 1, 0, C, E and P values");
+				return (0);
+			}
 			printarray(array, nbrlines);
 		}
 		else
