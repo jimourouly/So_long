@@ -81,12 +81,14 @@ int	checkextension(char *path)
 			i++;
 		if (path[i] == '.' && path[i+1] == 'b' && path[i+2] == 'e'&& path[i+3] == 'r')
 		{
-			ft_printf("OK\n");
 			ok = 1;
 			break;
 		}
 		else
+		{
+			i++;
 			ok = 0;
+		}
 	}
 	return (ok);
 }
@@ -133,6 +135,7 @@ int	main(int ac, char **av)
 			returnpos(array, nbrlines, player, 80);
 			returnpos(array, nbrlines,e, 69);
 			returnpos(array, nbrlines,c, 67);
+			ft_rectangle(array, nbrlines);
 		}
 		else
 		{

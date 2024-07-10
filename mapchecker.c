@@ -20,6 +20,11 @@ int	ft_columns_count(char *line)
 	return (count);
 }
 
+int ft_rectangle(int **array, int nbrlines)
+{
+//check if map is rectangle or swaure
+}
+
 int	ft_lines_count (char *mappath)
 {
 	char	*line;
@@ -53,7 +58,7 @@ void	printarray (int **array, int nbrlines)
 		j = 0;
 		while (j < nbrlines)
 		{
-			ft_printf("%d ", array[i][j]);
+			ft_printf("%c ", array[i][j]);
 			j ++;
 		}
 		ft_printf("\n");
@@ -106,13 +111,13 @@ int	checkpce(int **array, int nbrlines)
 				countPCE[0]++;
 			if (array[i][y] == 'e' || array[i][y] == 'E')
 				countPCE[1]++;
-			if (array[i][y] == 'p'|| array[i][y] == 'E')
+			if (array[i][y] == 'p'|| array[i][y] == 'P')
 				countPCE[2]++;
 			y++;
 		}
 		i ++;
 	}
-	if (countPCE[0] != 1 || countPCE[1] != 1 || countPCE[2] != 1 )
+	if (countPCE[0] < 1 || countPCE[1] != 1 || countPCE[2] != 1 )
 		return(0);
 	return (1);
 
@@ -206,7 +211,6 @@ int	**arraymaker (char *mappath, int nbrlines)
 }
 
 
-
 int	checkmapdim(char *mappath)
 {
 	char	*line;
@@ -222,8 +226,6 @@ int	checkmapdim(char *mappath)
 	{
 		line = get_next_line(fd);
 		columns = ft_columns_count(line);
-		if (columns != nbrlines)
-			return (0);
 		i++;
 		free(line);
 	}

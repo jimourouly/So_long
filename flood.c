@@ -12,13 +12,38 @@
 
 #include "so_long.h"
 
+int		ft_coin_count(int **array, int nbrlines, int nbrcol)
+{
+	int	i;
+	int	y;
+	int	nbrcoins;
+
+	i = 0;
+	nbrcoins = 0;
+	while (i < nbrlines)
+	{
+		y = 0;
+		while (y < nbrcol)
+		{
+			if (array[i][y] == 'C')
+				nbrcoins++;
+			y++;
+		}
+		i++;
+	}
+	return (nbrcoins);
+}
 
 void	returnpos(int **array, int nbrlines, t_map *pos, int item)
 {
 	int	i;
 	int	j;
+	static int c;
 
 	i = 0;
+	c = 0;
+	if (item == 'C')
+		c++;
 	while (i < nbrlines)
 	{
 		j = 0;
@@ -33,7 +58,7 @@ void	returnpos(int **array, int nbrlines, t_map *pos, int item)
 		}
 		i++;
 	}
-	ft_printf("pos %c y = %d\n", item, pos->y);
-	ft_printf("pos %c x = %d\n", item , pos->x);
+	ft_coin_count(array, nbrlines, nbrlines);
+	ft_printf("%c[%d] x%d y%d\n", item, c, pos->x, pos->y);
 
 }

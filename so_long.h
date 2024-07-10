@@ -49,5 +49,7 @@ int		ft_lines_count (char *mappath);
 int		**arraymaker (char *mappath, int nbrlines);
 void	printarray (int **array, int nbrlines);
 void	returnpos(int **array, int nbrlines, t_map *pos, int item);
+int		ft_coin_count(int **array, int nbrlines, int nbrcol);
+int		ft_rectangle(int **array, int nbrlines);
 
 #endif
