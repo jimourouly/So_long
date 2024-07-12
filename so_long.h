@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   so_long.h                                          :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: jroulet <jroulet@student.42.fr>            +#+  +:+       +#+        */
+/*   By: jim <jim@student.42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/06/26 18:14:26 by jroulet           #+#    #+#             */
-/*   Updated: 2024/07/08 17:20:51 by jroulet          ###   ########.fr       */
+/*   Updated: 2024/07/12 16:22:51 by jim              ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -47,9 +47,9 @@ int		ft_columns_count(char *line);
 int		checkmapdim(char *mappath);
 int		ft_lines_count (char *mappath);
 int		**arraymaker (char *mappath, int nbrlines);
-void	printarray (int **array, int nbrlines);
+void	printarray (int **array, int nbrlines, int nbrcol);
 void	returnpos(int **array, int nbrlines, t_map *pos, int item);
 int		ft_coin_count(int **array, int nbrlines, int nbrcol);
-int		ft_rectangle(int **array, int nbrlines);
+int		ft_rectangle(char *mappath);
 
 #endif

@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   mapchecker.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: jroulet <jroulet@student.42.fr>            +#+  +:+       +#+        */
+/*   By: jim <jim@student.42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/07/06 10:28:37 by jroulet           #+#    #+#             */
-/*   Updated: 2024/07/08 16:00:24 by jroulet          ###   ########.fr       */
+/*   Updated: 2024/07/12 16:42:12 by jim              ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,9 +20,41 @@ int	ft_columns_count(char *line)
 	return (count);
 }
 
-int ft_rectangle(int **array, int nbrlines)
+int ft_rectangle(char *mappath)
 {
-//check if map is rectangle or swaure
+    char *line;
+    int fd;
+    int columns;
+    int nbrlines;
+    int i;
+
+    i = 0;
+    nbrlines = ft_lines_count(mappath);
+    fd = open(mappath, O_RDONLY);
+    if (fd < 0)
+        return 0;
+
+    line = get_next_line(fd);
+    if (line == NULL)
+        return 0;
+
+    columns = ft_columns_count(line);
+    free(line);
+
+    while (i < nbrlines - 1)
+    {
+        line = get_next_line(fd);
+        if (line == NULL || ft_columns_count(line) != columns)
+        {
+            free(line);
+            close(fd);
+            return 0;
+        }
+        free(line);
+        i++;
+    }
+    close(fd);
+    return 1;
 }
 
 int	ft_lines_count (char *mappath)
@@ -46,25 +78,27 @@ int	ft_lines_count (char *mappath)
 }
 
 
-void	printarray (int **array, int nbrlines)
+void printarray(int **array, int nbrlines, int nbrcol)
 {
-	int	i;
-	int	j;
+    int i;
+    int j;
 
-	ft_printf("\n\n\narray\n");
-	i = 0;
-	while (i < nbrlines)
-	{
-		j = 0;
-		while (j < nbrlines)
-		{
-			ft_printf("%c ", array[i][j]);
-			j ++;
-		}
-		ft_printf("\n");
-		i++;
-	}
-	ft_printf("END array\n");
+    ft_printf("\n\n\narray\n");
+    ft_printf("nbrlines = %d\n", nbrlines);
+    ft_printf("nbrcol = %d\n", nbrcol);
+    i = 0;
+    while (i < nbrlines)
+    {
+        j = 0;
+        while (j <= nbrcol)
+        {
+            ft_printf("%c",array[i][j]);
+            j++;
+        }
+        ft_printf("\n");
+        i++;
+    }
+    ft_printf("END array\n");
 }
 
 void	mintomaj(int **array, int nbrlines)
@@ -167,6 +201,7 @@ int	**arraymaker (char *mappath, int nbrlines)
 	int		i;
 	int		j;
 	int		**array;
+	int		nbrcol;
 
 	i = 0;
 	array = (int **)malloc(nbrlines * sizeof(int *));
@@ -181,6 +216,7 @@ int	**arraymaker (char *mappath, int nbrlines)
 	{
 		j = 0;
 		line = get_next_line(fd);
+		nbrcol = ft_columns_count(line);
 		array[i] = (int *)malloc(nbrlines * sizeof(int));
 		while (j < nbrlines)
 		{
@@ -207,10 +243,12 @@ int	**arraymaker (char *mappath, int nbrlines)
 	else
 		ft_printf("CPE OK\n");
 	mintomaj(array, nbrlines);
+	ft_printf("nbrcol = %d\n", nbrcol);
+	printarray(array, nbrlines, nbrcol);
 	return (array);
 }
 
-
+//need to modify this func
 int	checkmapdim(char *mappath)
 {
 	char	*line;

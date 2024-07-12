@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   so_long.c                                          :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: jroulet <jroulet@student.42.fr>            +#+  +:+       +#+        */
+/*   By: jim <jim@student.42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/06/26 18:14:16 by jroulet           #+#    #+#             */
-/*   Updated: 2024/07/08 17:21:03 by jroulet          ###   ########.fr       */
+/*   Updated: 2024/07/12 16:26:57 by jim              ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -131,11 +131,10 @@ int	main(int ac, char **av)
 				ft_printf("array must only have 1, 0, C, E and P values");
 				return (0);
 			}
-			printarray(array, nbrlines);
 			returnpos(array, nbrlines, player, 80);
 			returnpos(array, nbrlines,e, 69);
 			returnpos(array, nbrlines,c, 67);
-			ft_rectangle(array, nbrlines);
+			ft_printf("rectanlge %d\n",(ft_rectangle(av[1])));
 		}
 		else
 		{
