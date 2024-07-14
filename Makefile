@@ -3,69 +3,56 @@
 #                                                         :::      ::::::::    #
 #    Makefile                                           :+:      :+:    :+:    #
 #                                                     +:+ +:+         +:+      #
-#    By: jroulet <jroulet@student.42.fr>           +#+  +:+       +#+         #
+#    By: jroulet <jroulet@student.42.fr>            +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
-#    Created: 2024/06/26 18:14:56 by jroulet           #+#    #+#              #
-#    Updated: 2024/07/01 12:37:06 by jroulet          ###   ########.fr        #
+#    Created: 2024/07/14 14:54:32 by jroulet           #+#    #+#              #
+#    Updated: 2024/07/14 16:10:46 by jroulet          ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
-FLAGS = -Wall -Werror -Wextra
 CC = cc
-DEBUGGER = -g
-SRCS = ./so_long.c\
-		./draw_shape.c \
-		./GNL/get_next_line.c \
-		./GNL/get_next_line_utils.c\
-		./mapchecker.c\
-		./flood.c
-OBJS = $(SRCS:.c=.o)
-
-LIBDIR = ./libft
-LIBNAME = libft.a
-
+CFLAGS = -Wall -Wextra -Werror
+MLXFLAGS = -L./mlx_linux -lmlx -Ilmlx -lXext -lX11
+HEADER = -I./header
+LIBFT = ./libft/libft.a
+GNL = ./GNL/get_next_line.a  # Adjusted to get_next_line.a
+VPATH = src error
+RM = rm -rf
 NAME = so_long
 
-## MINILIBX
-OS = $(shell uname)
-ifeq ($(OS), Linux)
-MLXFLAGS = -Lmlx_linux -lmlx -L/usr/X11/lib -lXext -lX11
-INCLUDE = -I/usr/include -Imlx_linux
-else
-MLXFLAGS = -L/path/to/mac/lib -lmlx -framework OpenGL -framework AppKit
-INCLUDE = -I/path/to/mac/include
-endif
-#### MINILIBX END
+ERROR = error
+SRC = action_key check_map create_map map_validator mlx update draw_map
+
+SRCS = $(addsuffix .c, $(ERROR)) $(addsuffix .c, $(SRC)) main.c
+
+OBJ_DIR = obj
+OBJS = $(SRCS:%.c=$(OBJ_DIR)/%.o)
 
 all: $(NAME)
 
-$(NAME): makelibft $(OBJS)
-	$(CC) $(FLAGS) $(OBJS) $(LIBDIR)/$(LIBNAME) $(MLXFLAGS) -o $(NAME) -lm
+$(NAME): $(OBJ_DIR) $(OBJS) $(LIBFT) $(GNL)
+	$(CC) $(CFLAGS) $(OBJS) $(LIBFT) $(GNL) $(MLXFLAGS) -o $(NAME)
 
-makelibft:
-	make -C $(LIBDIR)
-	cp $(LIBDIR)/$(LIBNAME) .
+$(OBJ_DIR):
+	mkdir -p obj
 
-debug: $(NAME)
-	$(CC) $(DEBUGGER) $(FLAGS) $(OBJS) $(LIBDIR)/$(LIBNAME) $(MLXFLAGS) -o $(NAME)
+$(OBJ_DIR)/%.o: %.c
+	$(CC) $(CFLAGS) -c $< -o $@ $(HEADER)
+
+$(LIBFT):
+	$(MAKE) -C ./libft
+
+$(GNL):
+	$(MAKE) -C ./GNL
 
 clean:
-	make -C $(LIBDIR) clean
-	rm -f $(OBJS)
+	$(MAKE) clean -C ./libft
+	$(MAKE) clean -C ./GNL
+	$(RM) $(OBJ_DIR)
 
 fclean: clean
-	make -C $(LIBDIR) fclean
-	rm -f $(LIBNAME)
-	rm -f $(NAME)
+	$(MAKE) fclean -C ./libft
+	$(MAKE) fclean -C ./GNL
+	$(RM) $(NAME)
 
 re: fclean all
-
-git:
-	git add .
-	git commit -m "$t" -m "$b"
-	git push
-
-%.o: %.c
-	$(CC) $(FLAGS) $(INCLUDE) -c $< -o $@
-
-.PHONY: all clean fclean re debug git
