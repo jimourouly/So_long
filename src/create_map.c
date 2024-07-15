@@ -6,7 +6,7 @@
 /*   By: jroulet <jroulet@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/07/14 12:12:37 by jroulet           #+#    #+#             */
-/*   Updated: 2024/07/14 16:33:14 by jroulet          ###   ########.fr       */
+/*   Updated: 2024/07/15 12:53:53 by jroulet          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,25 +16,20 @@
 #include <stdbool.h>
 
 bool check_file_extension(const char *filepath) {
-    // Check if the filepath is not NULL
-    if (filepath == NULL) {
-        return false;
-    }
-
-    // Find the last occurrence of '.'
-    const char *dot = strrchr(filepath, '.');
-
-    // If there's no '.', or if it's the last character in the string, return false
-    if (!dot || dot == filepath || *(dot + 1) == '\0') {
-        return false;
-    }
-
-    // Compare the extension with ".ber"
-    if (strcmp(dot, ".ber") == 0) {
-        return true;
-    } else {
-        return false;
-    }
+	if (filepath == NULL) {
+		return false;
+	}
+	const char *dot = strrchr(filepath, '.');
+	if (!dot || dot == filepath || *(dot + 1) == '\0') {
+		return false;
+	}
+	if (strcmp(dot, ".ber") == 0) {
+		return true;
+	}
+	else
+	{
+		return false;
+	}
 }
 
 static void	get_nbr_lines(char *mappath, t_game *game)
@@ -92,7 +87,7 @@ void	create_map(char *mappath, t_game *game)
 	if (!check_file_extension(mappath))
 		error_close(game, FILE_EXTENSION);
 	get_nbr_lines(mappath, game);
-	game->map.map = malloc((game->map.columns + 1) * sizeof(char *));
+	game->map.map = malloc((game->map.lines + 1) * sizeof(char *));
 	if (!game->map.map)
 		error_close(game, MALLOC_FAILED);
 	get_lines(mappath, game);

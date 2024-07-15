@@ -6,7 +6,7 @@
 /*   By: jroulet <jroulet@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/07/14 14:29:24 by jroulet           #+#    #+#             */
-/*   Updated: 2024/07/14 14:46:06 by jroulet          ###   ########.fr       */
+/*   Updated: 2024/07/15 13:49:20 by jroulet          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -23,6 +23,7 @@ void	draw_player(t_game *game)
 	mlx_put_image_to_window(game->mlx_ptr, game->win_ptr,
 		game->tiles.wall, 0, 0);
 	charmoves = ft_itoa(game->moves);
+	ft_printf("move : %d \n", game->moves);
 	mlx_string_put(game->mlx_ptr, game->win_ptr, 32, 10, 1, charmoves);
 	free(charmoves);
 }
@@ -36,6 +37,11 @@ void	next_tile(t_game *game)
 		[game->map.playerpos.xaxis] = FLOOR;
 		game->map.coins -= 1;
 		return ;
+	}
+	if (game->map.map[game->map.playerpos.yaxis][game->map.playerpos.xaxis] == EXIT && game->map.coins == 0)
+	{
+		ft_printf(WIN);
+		exit_game(EXIT_SUCCESS);
 	}
 }
 

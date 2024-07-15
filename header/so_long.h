@@ -6,7 +6,7 @@
 /*   By: jroulet <jroulet@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/07/14 11:24:24 by jroulet           #+#    #+#             */
-/*   Updated: 2024/07/14 16:23:33 by jroulet          ###   ########.fr       */
+/*   Updated: 2024/07/15 13:46:01 by jroulet          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -24,11 +24,11 @@
 # define KEY_DOWN 65364
 # define KEY_ESC 65307
 
-# define IMG_WALL "../assets/wall.xpm"
-# define IMG_FLOOR "../assets/floor.xpm"
-# define IMG_PLAYER "../assets/player.xpm"
-# define IMG_COINS "../assets/coin.xpm"
-# define IMG_EXIT "../assets/exit.xpm"
+# define IMG_WALL "./assets/wall.xpm"
+# define IMG_FLOOR "./assets/floor.xpm"
+# define IMG_PLAYER "./assets/player.xpm"
+# define IMG_COINS "./assets/coin.xpm"
+# define IMG_EXIT "./assets/exit.xpm"
 # define IMG_SIZE 64
 
 
@@ -47,7 +47,7 @@
 
 # define KEY_EVENT 2
 # define DELETE_EVENT 17
-# define WIN "bravo"
+# define WIN "bravo\n"
 
 typedef struct s_coord
 {

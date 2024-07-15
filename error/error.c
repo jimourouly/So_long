@@ -6,7 +6,7 @@
 /*   By: jroulet <jroulet@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/07/14 13:55:05 by jroulet           #+#    #+#             */
-/*   Updated: 2024/07/14 14:01:27 by jroulet          ###   ########.fr       */
+/*   Updated: 2024/07/15 12:17:05 by jroulet          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,15 +15,30 @@
 void	erase_map(t_game *game)
 {
 	if (game->tiles.wall)
+	{
 		mlx_destroy_image(game->mlx_ptr, game->tiles.wall);
+		game->tiles.wall = NULL;
+	}
 	if (game->tiles.floor)
+	{
 		mlx_destroy_image(game->mlx_ptr, game->tiles.floor);
+		game->tiles.floor = NULL;
+	}
 	if (game->tiles.player)
+	{
 		mlx_destroy_image(game->mlx_ptr, game->tiles.player);
+		game->tiles.player = NULL;
+	}
 	if (game->tiles.coin)
+	{
 		mlx_destroy_image(game->mlx_ptr, game->tiles.coin);
+		game->tiles.coin = NULL;
+	}
 	if (game->tiles.exit)
+	{
 		mlx_destroy_image(game->mlx_ptr, game->tiles.exit);
+		game->tiles.exit = NULL;
+	}
 }
 
 void	exit_destroy(t_game *game)
@@ -32,14 +47,21 @@ void	exit_destroy(t_game *game)
 		return;
 	erase_map(game);
 	if (game->win_ptr)
+	{
 		mlx_destroy_window(game->mlx_ptr, game->win_ptr);
+		game->win_ptr = NULL;
+	}
 	if (game->mlx_ptr)
 	{
 		mlx_destroy_display(game->mlx_ptr);
 		free(game->mlx_ptr);
+		game->mlx_ptr = NULL;
 	}
 	if (game->map.map)
+	{
 		ft_free_char_tab(game->map.map);
+		game->map.map = NULL;
+	}
 }
 
 void	error_close(t_game *game, char *message)

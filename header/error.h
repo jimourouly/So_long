@@ -6,7 +6,7 @@
 /*   By: jroulet <jroulet@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/07/14 12:01:28 by jroulet           #+#    #+#             */
-/*   Updated: 2024/07/14 12:57:30 by jroulet          ###   ########.fr       */
+/*   Updated: 2024/07/15 13:39:23 by jroulet          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -27,7 +27,7 @@
 # define MAP_COINS  "NO COINS"
 # define MAP_PLAYER "where is the player HUH?"
 
-# define FLOODFILL "you cant get all coins"
+# define FLOODFILL "you cant get all coins or go to the exit"
 
 # define FILE_EXTENSION "Extension must be .ber"
 # define FILE_OPEN "Cant open file map"

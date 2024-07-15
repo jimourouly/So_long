@@ -6,7 +6,7 @@
 /*   By: jroulet <jroulet@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/07/14 14:13:44 by jroulet           #+#    #+#             */
-/*   Updated: 2024/07/14 14:30:38 by jroulet          ###   ########.fr       */
+/*   Updated: 2024/07/15 13:20:04 by jroulet          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -28,7 +28,7 @@ int	pressed(int key, t_game *game)
 	else if (key == KEY_A || key == KEY_LEFT)
 		move_player(game, 1, -1);
 	else if (key == KEY_S || key == KEY_DOWN)
-		move_player(game, 2, 1);
+		move_player(game, 0, 1);
 	else if (key == KEY_D || key == KEY_RIGHT)
 		move_player(game, 1, 1);
 	return (EXIT_SUCCESS);
