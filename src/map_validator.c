@@ -6,7 +6,7 @@
 /*   By: jroulet <jroulet@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/07/14 13:37:36 by jroulet           #+#    #+#             */
-/*   Updated: 2024/07/14 15:55:46 by jroulet          ###   ########.fr       */
+/*   Updated: 2024/07/15 16:04:23 by jroulet          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -23,6 +23,7 @@ static char	**copy_grid(t_game *game)
 		error_close(game, MALLOC_FAILED);
 	while (i < game->map.lines)
 	{
+		ft_printf("strdup = %d \n", game->map.map[i]);
 		map[i] = ft_strdup(game->map.map[i]);
 		if (!map[i])
 		{
