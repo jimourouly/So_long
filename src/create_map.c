@@ -6,7 +6,7 @@
 /*   By: jroulet <jroulet@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/07/14 12:12:37 by jroulet           #+#    #+#             */
-/*   Updated: 2024/07/15 12:53:53 by jroulet          ###   ########.fr       */
+/*   Updated: 2024/07/15 15:11:40 by jroulet          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,21 +15,21 @@
 #include <stdio.h>
 #include <stdbool.h>
 
-bool check_file_extension(const char *filepath) {
-	if (filepath == NULL) {
-		return false;
-	}
-	const char *dot = strrchr(filepath, '.');
-	if (!dot || dot == filepath || *(dot + 1) == '\0') {
-		return false;
-	}
-	if (strcmp(dot, ".ber") == 0) {
-		return true;
-	}
-	else
+bool	check_file_extension(const char *filepath)
+{
+	char	*dot;
+
+	if (filepath == NULL)
+		return (false);
+	dot = ft_strrchr(filepath, '.');
+	if (!dot || dot == filepath || *(dot + 1) == '\0')
 	{
-		return false;
+		return (false);
 	}
+	if (ft_strcmp(dot, ".ber") == 0)
+		return (true);
+	else
+		return (false);
 }
 
 static void	get_nbr_lines(char *mappath, t_game *game)
@@ -45,7 +45,7 @@ static void	get_nbr_lines(char *mappath, t_game *game)
 	tmp = get_next_line(fd);
 	while (tmp)
 	{
-		i +=1;
+		i += 1;
 		free(tmp);
 		tmp = get_next_line(fd);
 	}
@@ -76,14 +76,11 @@ static void	get_lines(char *mappath, t_game *game)
 			error_close(game, MALLOC_FAILED);
 		i += 1;
 	}
-game->map.columns = ft_strlen(game->map.map[0]);
+	game->map.columns = ft_strlen(game->map.map[0]);
 }
 
 void	create_map(char *mappath, t_game *game)
 {
-	size_t len = strlen(mappath);
-	printf("extension_ok: Checking file: %s\n", mappath);
-    printf("extension_ok: Length: %zu\n", len);
 	if (!check_file_extension(mappath))
 		error_close(game, FILE_EXTENSION);
 	get_nbr_lines(mappath, game);

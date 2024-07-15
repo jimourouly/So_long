@@ -6,13 +6,12 @@
 /*   By: jroulet <jroulet@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/07/14 11:24:24 by jroulet           #+#    #+#             */
-/*   Updated: 2024/07/15 13:46:01 by jroulet          ###   ########.fr       */
+/*   Updated: 2024/07/15 14:58:32 by jroulet          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #ifndef SO_LONG_H
 # define SO_LONG_H
-# define VALID_ITEM "ECP01"
 
 # define KEY_W 119
 # define KEY_A 97
@@ -31,14 +30,13 @@
 # define IMG_EXIT "./assets/exit.xpm"
 # define IMG_SIZE 64
 
-
 # include "../header/error.h"
 # include <stdbool.h>
-
 # include "../libft/libft.h"
 # include "../mlx_linux/mlx.h"
 # include "../GNL/get_next_line.h"
 
+# define VALID_ITEM "ECP01"
 # define FLOOR '0'
 # define WALL '1'
 # define EXIT 'E'
@@ -84,24 +82,23 @@ typedef struct s_game
 	int			moves;
 }				t_game;
 
-
 static inline t_game	gameinit(void)
 {
 	return ((t_game)
-	{
-		.map.map = NULL,
-		.map.lines = 0,
-		.map.columns = 0,
-		.map.coins = 0,
-		.map.exit = 0,
-		.map.player = 0,
-		.tiles.coin = NULL,
-		.tiles.exit = NULL,
-		.tiles.floor = NULL,
-		.tiles.player = NULL,
-		.tiles.wall = NULL,
-		.moves = 0,
-	});
+		{
+			.map.map = NULL,
+			.map.lines = 0,
+			.map.columns = 0,
+			.map.coins = 0,
+			.map.exit = 0,
+			.map.player = 0,
+			.tiles.coin = NULL,
+			.tiles.exit = NULL,
+			.tiles.floor = NULL,
+			.tiles.player = NULL,
+			.tiles.wall = NULL,
+			.moves = 0,
+		});
 }
 
 void	create_map(char *mappath, t_game *game);

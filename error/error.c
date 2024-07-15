@@ -6,7 +6,7 @@
 /*   By: jroulet <jroulet@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/07/14 13:55:05 by jroulet           #+#    #+#             */
-/*   Updated: 2024/07/15 12:17:05 by jroulet          ###   ########.fr       */
+/*   Updated: 2024/07/15 15:12:56 by jroulet          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -44,7 +44,7 @@ void	erase_map(t_game *game)
 void	exit_destroy(t_game *game)
 {
 	if (!game)
-		return;
+		return ;
 	erase_map(game);
 	if (game->win_ptr)
 	{

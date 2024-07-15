@@ -6,7 +6,7 @@
 /*   By: jroulet <jroulet@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/07/14 11:23:22 by jroulet           #+#    #+#             */
-/*   Updated: 2024/07/14 15:56:07 by jroulet          ###   ########.fr       */
+/*   Updated: 2024/07/15 15:04:53 by jroulet          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,7 +20,7 @@ void	ac_check(int ac, char **av)
 		error_close(NULL, MAP);
 }
 
-int	main (int ac, char ** av)
+int	main(int ac, char **av)
 {
 	t_game	game;
 
