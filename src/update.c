@@ -6,7 +6,7 @@
 /*   By: jroulet <jroulet@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/07/14 14:29:24 by jroulet           #+#    #+#             */
-/*   Updated: 2024/07/15 16:01:13 by jroulet          ###   ########.fr       */
+/*   Updated: 2024/07/16 14:05:03 by jroulet          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,7 +21,6 @@ void	draw_player(t_game *game)
 	mlx_put_image_to_window(game->mlx_ptr, game->win_ptr,
 		game->tiles.wall, 0, 0);
 	ft_printf("move : %d \n", game->moves);
-
 }
 
 void	next_tile(t_game *game)
