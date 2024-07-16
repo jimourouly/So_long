@@ -6,7 +6,7 @@
 /*   By: jroulet <jroulet@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/07/14 12:37:58 by jroulet           #+#    #+#             */
-/*   Updated: 2024/07/15 16:19:13 by jroulet          ###   ########.fr       */
+/*   Updated: 2024/07/16 14:22:10 by jroulet          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -46,7 +46,6 @@ void	check_item(t_game *game)
 			}
 		}
 	}
-	ft_printf("end check_item\n");
 	error_catcher(game);
 }
 

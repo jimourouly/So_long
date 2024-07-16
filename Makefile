@@ -6,7 +6,7 @@
 #    By: jroulet <jroulet@student.42.fr>            +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2024/07/14 14:54:32 by jroulet           #+#    #+#              #
-#    Updated: 2024/07/14 16:10:46 by jroulet          ###   ########.fr        #
+#    Updated: 2024/07/16 14:18:25 by jroulet          ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -15,13 +15,13 @@ CFLAGS = -Wall -Wextra -Werror
 MLXFLAGS = -L./mlx_linux -lmlx -Ilmlx -lXext -lX11
 HEADER = -I./header
 LIBFT = ./libft/libft.a
-GNL = ./GNL/get_next_line.a  # Adjusted to get_next_line.a
+GNL = ./GNL/get_next_line.a
 VPATH = src error
 RM = rm -rf
 NAME = so_long
 
 ERROR = error
-SRC = action_key check_map create_map map_validator mlx update draw_map
+SRC = action_key check_map create_map map_validator mlx event_update draw_map
 
 SRCS = $(addsuffix .c, $(ERROR)) $(addsuffix .c, $(SRC)) main.c
 
