@@ -6,7 +6,7 @@
 /*   By: jroulet <jroulet@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/07/14 13:55:05 by jroulet           #+#    #+#             */
-/*   Updated: 2024/08/10 13:18:56 by jroulet          ###   ########.fr       */
+/*   Updated: 2024/08/19 18:55:30 by jroulet          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -54,9 +54,7 @@ void	exit_destroy(t_game *game)
 		free(game->mlx_ptr);
 	}
 	if (game->map.map)
-	{
 		ft_free_char_tab(game->map.map);
-	}
 }
 
 void	error_close(t_game *game, char *message)

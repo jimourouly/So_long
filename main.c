@@ -6,11 +6,12 @@
 /*   By: jroulet <jroulet@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/07/14 11:23:22 by jroulet           #+#    #+#             */
-/*   Updated: 2024/08/10 12:18:24 by jroulet          ###   ########.fr       */
+/*   Updated: 2024/08/19 18:47:23 by jroulet          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../header/so_long.h"
+
 
 void	ac_check(int ac, char **av)
 {
