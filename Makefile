@@ -6,7 +6,7 @@
 #    By: jroulet <jroulet@student.42.fr>            +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2024/07/14 14:54:32 by jroulet           #+#    #+#              #
-#    Updated: 2024/08/10 11:59:49 by jroulet          ###   ########.fr        #
+#    Updated: 2024/08/19 18:25:18 by jroulet          ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -55,4 +55,11 @@ fclean: clean
 	$(MAKE) fclean -C ./GNL
 	$(RM) $(NAME)
 
+norminette:
+	norminette GNL/
+	norminette error/
+	norminette libft/
+	norminette src/
+	norminette main.c
+	
 re: fclean all
