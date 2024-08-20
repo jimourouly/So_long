@@ -6,7 +6,7 @@
 /*   By: jroulet <jroulet@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/07/14 12:37:58 by jroulet           #+#    #+#             */
-/*   Updated: 2024/07/16 14:22:10 by jroulet          ###   ########.fr       */
+/*   Updated: 2024/08/20 18:15:51 by jroulet          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -67,7 +67,7 @@ int	wall_ok(t_map *map)
 	return (1);
 }
 
-int	is_rectangle(t_game *game)
+static bool	valid_form(t_game *game)
 {
 	size_t	len;
 	size_t	i;
@@ -77,15 +77,15 @@ int	is_rectangle(t_game *game)
 	while (game->map.map[i] != NULL)
 	{
 		if (len != ft_strlen(game->map.map[i]))
-			return (0);
+			return (false);
 		i += 1;
 	}
-	return (1);
+	return (true);
 }
 
 void	map_check(t_game *game)
 {
-	if (!is_rectangle(game))
+	if (!valid_form(game))
 		error_close(game, MAP_FORMAT);
 	check_item(game);
 	if (!wall_ok(&game->map))

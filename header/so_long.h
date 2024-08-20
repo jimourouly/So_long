@@ -6,7 +6,7 @@
 /*   By: jroulet <jroulet@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/07/14 11:24:24 by jroulet           #+#    #+#             */
-/*   Updated: 2024/07/15 14:58:32 by jroulet          ###   ########.fr       */
+/*   Updated: 2024/08/20 17:38:51 by jroulet          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -97,7 +97,7 @@ static inline t_game	gameinit(void)
 			.tiles.floor = NULL,
 			.tiles.player = NULL,
 			.tiles.wall = NULL,
-			.moves = 0,
+			.moves = -1,
 		});
 }
 

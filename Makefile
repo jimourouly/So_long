@@ -6,7 +6,7 @@
 #    By: jroulet <jroulet@student.42.fr>            +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2024/07/14 14:54:32 by jroulet           #+#    #+#              #
-#    Updated: 2024/08/19 18:25:18 by jroulet          ###   ########.fr        #
+#    Updated: 2024/08/20 19:06:05 by jroulet          ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -61,5 +61,5 @@ norminette:
 	norminette libft/
 	norminette src/
 	norminette main.c
-	
+
 re: fclean all

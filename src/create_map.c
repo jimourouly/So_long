@@ -6,7 +6,7 @@
 /*   By: jroulet <jroulet@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/07/14 12:12:37 by jroulet           #+#    #+#             */
-/*   Updated: 2024/08/11 14:41:24 by jroulet          ###   ########.fr       */
+/*   Updated: 2024/08/20 18:07:20 by jroulet          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -85,7 +85,6 @@ void	create_map(char *mappath, t_game *game)
 		error_close(game, FILE_EXTENSION);
 	get_nbr_lines(mappath, game);
 	game->map.map = malloc((game->map.lines +1) * sizeof(char *));
-	ft_printf("malloc creatmap %p\n", game->map.map);
 	if (!game->map.map)
 		error_close(game, MALLOC_FAILED);
 	get_lines(mappath, game);
